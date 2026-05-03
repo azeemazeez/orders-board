@@ -1,16 +1,14 @@
-# Orders Board
+# Orders Board for WooCommerce
 
-A WooCommerce plugin that adds a Kanban-style board to your WP admin, showing the most recent 10 orders per status column. Columns are generated dynamically from whatever order statuses exist in your store -- including any custom ones added by other plugins.
+A WooCommerce plugin that adds a Kanban-style board to your WordPress admin, showing the most recent orders per status column. Columns are generated dynamically from whatever order statuses exist in your store, including any custom ones added by other plugins.
 
 ## Features
 
 - Kanban board with one column per order status
-- Up to 10 most recent orders per column
 - Each card shows: order number, customer name, order total, date placed, item count
-- Clicking a card opens the order edit screen
-- Auto-refreshes every 60 seconds
-- Manual refresh button
-- Clean, readable design that fits the WP admin UI
+- Quick-view to quickly see more information about an order
+- Clean, readable design that fits the WordPress admin UI
+- Settings page that allows you to set number of orders per column, which columns to show, the order of the columns and what permissions a user needs to view this board.
 
 ## Installation
 

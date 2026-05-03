@@ -17,15 +17,10 @@ Orders Board adds a Kanban-style board to your WP admin, showing WooCommerce ord
 **Features**
 
 * Kanban board with one column per order status
-* Up to 10 most recent orders per column (configurable)
 * Each card shows: order number, customer name, order total, date placed, item count
-* Drag cards between columns to update order status
-* Clicking a card opens the order edit screen
-* Auto-refreshes every 30 seconds
-* Manual refresh button
-* HPOS (High-Performance Order Storage) compatible
-* Role-based access control
-* Clean, readable design that fits the WP admin UI
+* Quick-view to quickly see more information about an order
+* Clean, readable design that fits the WordPress admin UI
+* Settings page that allows you to set number of orders per column, which columns to show, the order of the columns and what permissions a user needs to view this board.
 
 == Installation ==
 
