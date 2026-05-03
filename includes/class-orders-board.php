@@ -414,6 +414,7 @@ class Orders_Board {
 
         foreach ( $statuses as $slug => $label ) {
             $orders = wc_get_orders( [
+                'type'    => 'shop_order',
                 'status'  => $slug,
                 'limit'   => $limit,
                 'orderby' => 'date',
@@ -422,9 +423,10 @@ class Orders_Board {
 
             // Total count for this status (for "load more").
             $total = wc_get_orders( [
-                'status'  => $slug,
-                'limit'   => -1,
-                'return'  => 'ids',
+                'type'   => 'shop_order',
+                'status' => $slug,
+                'limit'  => -1,
+                'return' => 'ids',
             ] );
 
             $cards = array_map( [ __CLASS__, 'order_to_card' ], $orders );
@@ -467,6 +469,7 @@ class Orders_Board {
         foreach ( $statuses as $slug => $label ) {
             // Orders modified after $since in this status.
             $orders = wc_get_orders( [
+                'type'         => 'shop_order',
                 'status'       => $slug,
                 'limit'        => (int) $settings['per_column'],
                 'orderby'      => 'modified',
@@ -505,6 +508,7 @@ class Orders_Board {
         }
 
         $orders = wc_get_orders( [
+            'type'    => 'shop_order',
             'status'  => $slug,
             'limit'   => $limit,
             'offset'  => $offset,
@@ -513,6 +517,7 @@ class Orders_Board {
         ] );
 
         $total = wc_get_orders( [
+            'type'   => 'shop_order',
             'status' => $slug,
             'limit'  => -1,
             'return' => 'ids',
