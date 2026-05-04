@@ -252,6 +252,14 @@
 
                     if ( newStatus === oldStatus ) return;
 
+                    // Remove "No orders" placeholder if destination had one.
+                    $( evt.to ).find( '.ob-empty' ).remove();
+
+                    // Add "No orders" placeholder if source column is now empty.
+                    if ( $( evt.from ).find( '.ob-card' ).length === 0 ) {
+                        $( evt.from ).append( '<div class="ob-empty">No orders</div>' );
+                    }
+
                     colTotals[ oldStatus ] = Math.max( 0, ( colTotals[ oldStatus ] || 1 ) - 1 );
                     colTotals[ newStatus ] = ( colTotals[ newStatus ] || 0 ) + 1;
                     updateColCount( oldStatus, 0 );
