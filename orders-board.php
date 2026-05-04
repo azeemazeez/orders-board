@@ -3,7 +3,7 @@
  * Plugin Name: Orders Board for WooCommerce
  * Plugin URI:  https://github.com/azeemazeez/orders-board
  * Description: A live Kanban-style board showing WooCommerce orders grouped by status.
- * Version:     1.1.0
+ * Version:     1.1.1
  * Author:      Azeem Azeez
  * License:     GPL-2.0+
  * Text Domain: orders-board
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'ORDERS_BOARD_VERSION', '1.1.0' );
+define( 'ORDERS_BOARD_VERSION', '1.1.1' );
 define( 'ORDERS_BOARD_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ORDERS_BOARD_URL', plugin_dir_url( __FILE__ ) );
 
