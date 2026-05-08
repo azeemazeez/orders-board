@@ -1,4 +1,4 @@
-# Orders Board for WooCommerce
+# StatusBoard for WooCommerce
 
 A WooCommerce plugin that adds a Kanban-style board to your WordPress admin, showing the most recent orders per status column. Columns are generated dynamically from whatever order statuses exist in your store, including any custom ones added by other plugins.
 
@@ -14,7 +14,7 @@ A WooCommerce plugin that adds a Kanban-style board to your WordPress admin, sho
 
 1. Upload the `orders-board` folder to `/wp-content/plugins/`
 2. Activate the plugin through **Plugins > Installed Plugins**
-3. Navigate to **WooCommerce > Orders Board**
+3. Navigate to **StatusBoard** in the WP admin sidebar
 
 ## Requirements
 

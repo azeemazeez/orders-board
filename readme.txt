@@ -26,7 +26,7 @@ StatusBoard adds a Kanban-style board to your WP admin, showing WooCommerce orde
 
 1. Upload the `orders-board` folder to `/wp-content/plugins/`
 2. Activate the plugin through **Plugins > Installed Plugins**
-3. Navigate to **Orders Board** in the WP admin sidebar
+3. Navigate to **StatusBoard** in the WP admin sidebar
 
 == Frequently Asked Questions ==
 
