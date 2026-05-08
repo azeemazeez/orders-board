@@ -1,18 +1,18 @@
 <?php
 /**
- * Plugin Name: Orders Board for WooCommerce
+ * Plugin Name: StatusBoard for WooCommerce
  * Plugin URI:  https://github.com/azeemazeez/orders-board
  * Description: A live Kanban-style board showing WooCommerce orders grouped by status.
- * Version:     1.1.1
+ * Version:     1.1.2
  * Author:      Azeem Azeez
  * License:     GPL-2.0+
- * Text Domain: orders-board
+ * Text Domain: statusboard-for-woocommerce
  * Requires Plugins: woocommerce
  */
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'ORDERS_BOARD_VERSION', '1.1.1' );
+define( 'ORDERS_BOARD_VERSION', '1.1.2' );
 define( 'ORDERS_BOARD_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ORDERS_BOARD_URL', plugin_dir_url( __FILE__ ) );
 
@@ -37,7 +37,7 @@ add_action( 'plugins_loaded', function () {
     if ( ! class_exists( 'WooCommerce' ) ) {
         add_action( 'admin_notices', function () {
             echo '<div class="notice notice-error"><p>'
-                . esc_html__( 'Orders Board requires WooCommerce to be installed and active.', 'orders-board' )
+                . esc_html__( 'StatusBoard requires WooCommerce to be installed and active.', 'statusboard-for-woocommerce' )
                 . '</p></div>';
         } );
         return;

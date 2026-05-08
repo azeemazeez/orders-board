@@ -41,8 +41,8 @@ class Orders_Board {
         }
 
         add_menu_page(
-            __( 'Orders Board', 'orders-board' ),
-            __( 'Orders Board', 'orders-board' ),
+            __( 'StatusBoard', 'statusboard-for-woocommerce' ),
+            __( 'StatusBoard', 'statusboard-for-woocommerce' ),
             self::required_capability(),
             'orders-board',
             [ __CLASS__, 'render_page' ],
@@ -53,8 +53,8 @@ class Orders_Board {
         // Rename the auto-generated first submenu item from "Orders Board" to "Board".
         add_submenu_page(
             'orders-board',
-            __( 'Orders Board', 'orders-board' ),
-            __( 'Board', 'orders-board' ),
+            __( 'StatusBoard', 'statusboard-for-woocommerce' ),
+            __( 'Board', 'statusboard-for-woocommerce' ),
             self::required_capability(),
             'orders-board',
             [ __CLASS__, 'render_page' ]
@@ -62,8 +62,8 @@ class Orders_Board {
 
         add_submenu_page(
             'orders-board',
-            __( 'Orders Board Settings', 'orders-board' ),
-            __( 'Settings', 'orders-board' ),
+            __( 'StatusBoard Settings', 'statusboard-for-woocommerce' ),
+            __( 'Settings', 'statusboard-for-woocommerce' ),
             'manage_woocommerce',
             'orders-board-settings',
             [ __CLASS__, 'render_settings_page' ]
@@ -95,7 +95,7 @@ class Orders_Board {
             'sortablejs',
             ORDERS_BOARD_URL . 'assets/sortable.min.js',
             [],
-            '1.15.2',
+            '1.15.7',
             true
         );
 
@@ -125,7 +125,7 @@ class Orders_Board {
 
     public static function render_page() {
         if ( ! current_user_can( self::required_capability() ) ) {
-            wp_die( esc_html__( 'You do not have permission to view this page.', 'orders-board' ) );
+            wp_die( esc_html__( 'You do not have permission to view this page.', 'statusboard-for-woocommerce' ) );
         }
 
         $settings = self::get_settings();
@@ -134,7 +134,7 @@ class Orders_Board {
         <div id="orders-board-root">
             <div class="ob-header">
                 <div class="ob-header-left">
-                    <h1 class="ob-title">Orders Board</h1>
+                    <h1 class="ob-title">StatusBoard</h1>
                     <span class="ob-subtitle">Last <?php echo esc_html( $per_col ); ?> orders per status</span>
                 </div>
                 <div class="ob-header-right">
@@ -215,7 +215,7 @@ class Orders_Board {
         <div id="orders-board-root" class="ob-settings-page">
             <div class="ob-header">
                 <div class="ob-header-left">
-                    <h1 class="ob-title">Orders Board &mdash; Settings</h1>
+                    <h1 class="ob-title">StatusBoard &mdash; Settings</h1>
                 </div>
                 <div class="ob-header-right">
                     <a href="<?php echo esc_url( admin_url( 'admin.php?page=orders-board' ) ); ?>" class="ob-btn ob-btn-secondary">
@@ -266,7 +266,7 @@ class Orders_Board {
                 <!-- Role-based access -->
                 <div class="ob-settings-card">
                     <h2 class="ob-settings-section-title">Who can view the board</h2>
-                    <p class="ob-settings-desc">Select which roles can access Orders Board. Administrators always have access.</p>
+                    <p class="ob-settings-desc">Select which roles can access StatusBoard. Administrators always have access.</p>
                     <div class="ob-role-grid">
                         <?php foreach ( $all_roles as $role_slug => $role_name ) :
                             $is_admin   = 'administrator' === $role_slug;
@@ -608,7 +608,7 @@ class Orders_Board {
             wp_send_json_error( 'Invalid status', 400 );
         }
 
-        $order->update_status( $new_status, __( 'Status changed via Orders Board.', 'orders-board' ) );
+        $order->update_status( $new_status, __( 'Status changed via StatusBoard.', 'statusboard-for-woocommerce' ) );
 
         wp_send_json_success( [ 'id' => $order->get_id(), 'status' => $new_status ] );
     }

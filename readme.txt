@@ -1,18 +1,18 @@
-=== Orders Board for WooCommerce ===
+=== StatusBoard for WooCommerce ===
 Contributors: azeemazeez
 Tags: woocommerce, orders, kanban, order management
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A live Kanban-style board for WooCommerce orders grouped by status. Supports HPOS, drag-and-drop, and custom order statuses.
+StatusBoard is a live Kanban-style board for WooCommerce orders grouped by status. Supports HPOS, drag-and-drop, and custom order statuses.
 
 == Description ==
 
-Orders Board adds a Kanban-style board to your WP admin, showing WooCommerce orders grouped by status column. Columns are generated dynamically from your store's order statuses, including any custom ones added by other plugins.
+StatusBoard adds a Kanban-style board to your WP admin, showing WooCommerce orders grouped by status column. Columns are generated dynamically from your store's order statuses, including any custom ones added by other plugins.
 
 **Features**
 
@@ -39,6 +39,10 @@ Yes. Columns are generated from `wc_get_order_statuses()`, so any statuses regis
 Yes. The plugin declares HPOS compatibility and uses `wc_get_orders()` exclusively.
 
 == Changelog ==
+
+= 1.1.2 =
+* Renamed plugin to StatusBoard for WooCommerce
+* Updated Sortable.js from 1.15.2 to 1.15.7
 
 = 1.1.1 =
 * Fix fatal error caused by refund orders being returned by wc_get_orders
