@@ -41,8 +41,8 @@ class Orders_Board {
         }
 
         add_menu_page(
-            __( 'StatusBoard', 'statusboard-for-woocommerce' ),
-            __( 'StatusBoard', 'statusboard-for-woocommerce' ),
+            __( 'StatusBoard', 'orders-board-for-woocommerce' ),
+            __( 'StatusBoard', 'orders-board-for-woocommerce' ),
             self::required_capability(),
             'orders-board',
             [ __CLASS__, 'render_page' ],
@@ -53,8 +53,8 @@ class Orders_Board {
         // Rename the auto-generated first submenu item from "Orders Board" to "Board".
         add_submenu_page(
             'orders-board',
-            __( 'StatusBoard', 'statusboard-for-woocommerce' ),
-            __( 'Board', 'statusboard-for-woocommerce' ),
+            __( 'StatusBoard', 'orders-board-for-woocommerce' ),
+            __( 'Board', 'orders-board-for-woocommerce' ),
             self::required_capability(),
             'orders-board',
             [ __CLASS__, 'render_page' ]
@@ -62,8 +62,8 @@ class Orders_Board {
 
         add_submenu_page(
             'orders-board',
-            __( 'StatusBoard Settings', 'statusboard-for-woocommerce' ),
-            __( 'Settings', 'statusboard-for-woocommerce' ),
+            __( 'StatusBoard Settings', 'orders-board-for-woocommerce' ),
+            __( 'Settings', 'orders-board-for-woocommerce' ),
             'manage_woocommerce',
             'orders-board-settings',
             [ __CLASS__, 'render_settings_page' ]
@@ -87,10 +87,6 @@ class Orders_Board {
             ORDERS_BOARD_VERSION
         );
 
-        if ( 'toplevel_page_orders-board' !== $hook ) {
-            return;
-        }
-
         wp_enqueue_script(
             'sortablejs',
             ORDERS_BOARD_URL . 'assets/sortable.min.js',
@@ -98,6 +94,44 @@ class Orders_Board {
             '1.15.7',
             true
         );
+
+        if ( 'orders-board_page_orders-board-settings' === $hook ) {
+            wp_add_inline_script(
+                'sortablejs',
+                '( function () {
+                    var list = document.getElementById(\'ob-col-sort\');
+                    if ( ! list ) return;
+
+                    Sortable.create( list, {
+                        handle:    \'.ob-sort-handle\',
+                        animation: 150,
+                        onEnd: function () {
+                            list.querySelectorAll(\'.ob-col-sort-item\').forEach( function ( item ) {
+                                item.querySelector(\'.ob-order-input\').value = item.dataset.slug;
+                            });
+                        }
+                    });
+
+                    list.addEventListener(\'change\', function (e) {
+                        if ( e.target.type === \'checkbox\' ) {
+                            e.target.closest(\'.ob-col-sort-item\').classList.toggle(\'is-active\', e.target.checked);
+                            e.target.closest(\'.ob-col-sort-item\').querySelector(\'.ob-sort-toggle\').classList.toggle(\'is-checked\', e.target.checked);
+                        }
+                    });
+
+                    list.querySelectorAll(\'input[type="checkbox"]\').forEach(function(cb) {
+                        if (cb.checked) cb.closest(\'.ob-sort-toggle\').classList.add(\'is-checked\');
+                    });
+
+                    document.querySelectorAll(\'.ob-role-toggle input\').forEach(function(cb) {
+                        cb.addEventListener(\'change\', function() {
+                            this.closest(\'.ob-role-toggle\').classList.toggle(\'is-active\', this.checked);
+                        });
+                    });
+                } )();'
+            );
+            return;
+        }
 
         wp_enqueue_script(
             'orders-board-script',
@@ -125,7 +159,7 @@ class Orders_Board {
 
     public static function render_page() {
         if ( ! current_user_can( self::required_capability() ) ) {
-            wp_die( esc_html__( 'You do not have permission to view this page.', 'statusboard-for-woocommerce' ) );
+            wp_die( esc_html__( 'You do not have permission to view this page.', 'orders-board-for-woocommerce' ) );
         }
 
         $settings = self::get_settings();
@@ -292,55 +326,6 @@ class Orders_Board {
             </form>
         </div>
 
-        <script>
-        ( function () {
-            // Drag-to-reorder columns in settings using SortableJS (already enqueued on board page, 
-            // but settings page loads it separately via inline init).
-            function loadSortable( cb ) {
-                if ( window.Sortable ) { cb(); return; }
-                var s = document.createElement('script');
-                s.src = '<?php echo esc_url( ORDERS_BOARD_URL . 'assets/sortable.min.js' ); ?>';
-                s.onload = cb;
-                document.head.appendChild(s);
-            }
-
-            loadSortable( function () {
-                var list = document.getElementById('ob-col-sort');
-                if ( ! list ) return;
-
-                Sortable.create( list, {
-                    handle:    '.ob-sort-handle',
-                    animation: 150,
-                    onEnd: function () {
-                        // Update hidden order inputs to match DOM order.
-                        list.querySelectorAll('.ob-col-sort-item').forEach( function ( item, i ) {
-                            item.querySelector('.ob-order-input').value = item.dataset.slug;
-                        });
-                    }
-                });
-
-                // Toggle active class on checkbox change.
-                list.addEventListener('change', function (e) {
-                    if ( e.target.type === 'checkbox' ) {
-                        e.target.closest('.ob-col-sort-item').classList.toggle('is-active', e.target.checked);
-                        e.target.closest('.ob-col-sort-item').querySelector('.ob-sort-toggle').classList.toggle('is-checked', e.target.checked);
-                    }
-                });
-
-                // Set initial is-checked class on toggles.
-                list.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-                    if (cb.checked) cb.closest('.ob-sort-toggle').classList.add('is-checked');
-                });
-            });
-
-            // Role toggle visual.
-            document.querySelectorAll('.ob-role-toggle input').forEach(function(cb) {
-                cb.addEventListener('change', function() {
-                    this.closest('.ob-role-toggle').classList.toggle('is-active', this.checked);
-                });
-            });
-        } )();
-        </script>
         <?php
     }
 
@@ -608,7 +593,7 @@ class Orders_Board {
             wp_send_json_error( 'Invalid status', 400 );
         }
 
-        $order->update_status( $new_status, __( 'Status changed via StatusBoard.', 'statusboard-for-woocommerce' ) );
+        $order->update_status( $new_status, __( 'Status changed via StatusBoard.', 'orders-board-for-woocommerce' ) );
 
         wp_send_json_success( [ 'id' => $order->get_id(), 'status' => $new_status ] );
     }
