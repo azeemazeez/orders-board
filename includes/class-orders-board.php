@@ -35,9 +35,9 @@ class Orders_Board {
                 break;
             }
         }
-        $position = null !== $woo_pos ? $woo_pos - 1 : 55;
+        $position = null !== $woo_pos ? (int) $woo_pos - 1 : 55;
         while ( isset( $menu[ $position ] ) ) {
-            $position -= 0.1;
+            $position--;
         }
 
         add_menu_page(
