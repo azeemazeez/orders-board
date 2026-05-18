@@ -43,6 +43,6 @@ add_action( 'plugins_loaded', function () {
         return;
     }
 
-    require_once ORDERS_BOARD_PATH . 'includes/class-orders-board.php';
-    Orders_Board::init();
+    require_once ORDERS_BOARD_PATH . 'includes/class-status-board.php';
+    Status_Board::init();
 } );

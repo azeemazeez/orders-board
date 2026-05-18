@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-class Orders_Board {
+class Status_Board {
 
     const OPTION_KEY = 'orders_board_settings';
 
