@@ -41,8 +41,8 @@ class Orders_Board {
         }
 
         add_menu_page(
-            __( 'StatusBoard', 'orders-board-for-woocommerce' ),
-            __( 'StatusBoard', 'orders-board-for-woocommerce' ),
+            __( 'StatusBoard', 'statusboard-for-woocommerce' ),
+            __( 'StatusBoard', 'statusboard-for-woocommerce' ),
             self::required_capability(),
             'orders-board',
             [ __CLASS__, 'render_page' ],
@@ -53,8 +53,8 @@ class Orders_Board {
         // Rename the auto-generated first submenu item from "Orders Board" to "Board".
         add_submenu_page(
             'orders-board',
-            __( 'StatusBoard', 'orders-board-for-woocommerce' ),
-            __( 'Board', 'orders-board-for-woocommerce' ),
+            __( 'StatusBoard', 'statusboard-for-woocommerce' ),
+            __( 'Board', 'statusboard-for-woocommerce' ),
             self::required_capability(),
             'orders-board',
             [ __CLASS__, 'render_page' ]
@@ -62,8 +62,8 @@ class Orders_Board {
 
         add_submenu_page(
             'orders-board',
-            __( 'StatusBoard Settings', 'orders-board-for-woocommerce' ),
-            __( 'Settings', 'orders-board-for-woocommerce' ),
+            __( 'StatusBoard Settings', 'statusboard-for-woocommerce' ),
+            __( 'Settings', 'statusboard-for-woocommerce' ),
             'manage_woocommerce',
             'orders-board-settings',
             [ __CLASS__, 'render_settings_page' ]
@@ -159,7 +159,7 @@ class Orders_Board {
 
     public static function render_page() {
         if ( ! current_user_can( self::required_capability() ) ) {
-            wp_die( esc_html__( 'You do not have permission to view this page.', 'orders-board-for-woocommerce' ) );
+            wp_die( esc_html__( 'You do not have permission to view this page.', 'statusboard-for-woocommerce' ) );
         }
 
         $settings = self::get_settings();
@@ -593,7 +593,7 @@ class Orders_Board {
             wp_send_json_error( 'Invalid status', 400 );
         }
 
-        $order->update_status( $new_status, __( 'Status changed via StatusBoard.', 'orders-board-for-woocommerce' ) );
+        $order->update_status( $new_status, __( 'Status changed via StatusBoard.', 'statusboard-for-woocommerce' ) );
 
         wp_send_json_success( [ 'id' => $order->get_id(), 'status' => $new_status ] );
     }

@@ -6,7 +6,7 @@
  * Version:     1.1.2
  * Author:      Azeem Azeez
  * License:     GPL-2.0+
- * Text Domain: orders-board-for-woocommerce
+ * Text Domain: statusboard-for-woocommerce
  * Requires Plugins: woocommerce
  */
 
@@ -37,7 +37,7 @@ add_action( 'plugins_loaded', function () {
     if ( ! class_exists( 'WooCommerce' ) ) {
         add_action( 'admin_notices', function () {
             echo '<div class="notice notice-error"><p>'
-                . esc_html__( 'StatusBoard requires WooCommerce to be installed and active.', 'orders-board-for-woocommerce' )
+                . esc_html__( 'StatusBoard requires WooCommerce to be installed and active.', 'statusboard-for-woocommerce' )
                 . '</p></div>';
         } );
         return;
