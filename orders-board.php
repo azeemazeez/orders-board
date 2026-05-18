@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: StatusBoard for WooCommerce
- * Plugin URI:  https://github.com/azeemazeez/orders-board
+ * Plugin URI:  https://github.com/azeemazeez/status-board
  * Description: A live Kanban-style board showing WooCommerce orders grouped by status.
  * Version:     1.1.2
  * Author:      Azeem Azeez
